@@ -1,0 +1,36 @@
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1320px;
+  gap: 30px;
+  line-height: 1.6;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.text {
+  font-size: 18px;
+  flex: 1;
+}
+.text p {
+  margin-bottom: 1.8rem;
+}
+
+.text h1 {
+  color: #d2af84;
+}
+
+.image {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.link {
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #c69963;
+  color: #2c3d4f;
+  padding: 20px 40px;
+  border: 0;
+}

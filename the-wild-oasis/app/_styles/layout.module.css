@@ -1,0 +1,32 @@
+.background {
+  width: 100%;
+  height: 100%;
+  background-color: #141c24;
+  color: rgb(218, 216, 216);
+}
+
+.header-container {
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+  background-color: inherit;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 0.1px solid #1b2631;
+}
+
+.header,
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1320px;
+  padding: 0 5rem 0 5rem;
+  margin: 0 auto;
+}
+.main-container {
+  width: 100%;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+}

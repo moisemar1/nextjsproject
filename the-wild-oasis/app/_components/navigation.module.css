@@ -1,0 +1,21 @@
+.navList {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin-left: auto;
+}
+
+.navList a {
+  text-decoration: none;
+  font-size: 22px;
+  color: rgb(218, 216, 216);
+}
+
+.navList li {
+  color: rgb(218, 216, 216);
+  margin-bottom: 5px;
+}

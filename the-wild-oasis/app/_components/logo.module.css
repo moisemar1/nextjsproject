@@ -1,0 +1,20 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 10;
+  text-decoration: none;
+  color: rgb(218, 216, 216);
+}
+
+.logo a {
+  text-decoration: none;
+  color: rgb(218, 216, 216);
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e0f2fe;
+}
