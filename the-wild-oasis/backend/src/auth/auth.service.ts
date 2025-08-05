@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+  Res,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { AuthDto } from './dto';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,6 +14,7 @@ import { Repository } from 'typeorm';
 import { QueryFailedError } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import 'dotenv/config';
+import type { Response } from 'express';
 
 @Injectable({})
 export class AuthService {
@@ -43,7 +50,7 @@ export class AuthService {
     return await this.userRepository.findOne({ where: { email } });
   }
 
-  async signin(dto: AuthDto) {
+  async signin(dto: AuthDto, @Res({ passthrough: true }) response: Response) {
     const user = await this.findUserByEmail(dto.email);
     //console.log(user);
     if (user) {
@@ -52,12 +59,14 @@ export class AuthService {
         user.hashed_password,
       );
       if (!checkPassword) {
-        return { msg: 'Incorrect password' };
+        throw new UnauthorizedException('Incorrect password');
       }
     } else {
-      return { msg: 'User with this email does not exist' };
+      throw new NotFoundException('User with this email does not exist');
     }
-    return this.signToken(user.id, user.email);
+    const jwt = await this.signToken(user.id, user.email);
+    response.cookie('jwt', jwt, { httpOnly: true });
+    return { msg: 'Login successful' };
   }
 
   async signToken(
@@ -75,5 +84,10 @@ export class AuthService {
     return {
       ACCESS_TOKEN: token,
     };
+  }
+
+  logOut(@Res({ passthrough: true }) response: Response) {
+    response.clearCookie('jwt');
+    return 'Logged out';
   }
 }

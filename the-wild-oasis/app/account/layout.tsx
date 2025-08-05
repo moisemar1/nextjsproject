@@ -1,3 +1,4 @@
+"use client";
 import type { ReactNode } from "react";
 import {
   HomeFilled,
@@ -12,6 +13,21 @@ type RootLayoutProps = {
 };
 
 export default function AccountLayout({ children }: RootLayoutProps) {
+  async function handleLogOut() {
+    try {
+      const response = await fetch("http://localhost:8000/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (response.ok) {
+        //console.log("worked");
+        window.location.href = "/";
+      }
+    } catch (error) {
+      throw new Error("You are not logged in");
+    }
+  }
+
   return (
     <>
       <div className={classes["sidebar-navigation"]}>
@@ -34,12 +50,15 @@ export default function AccountLayout({ children }: RootLayoutProps) {
           </div>
         </Link>
 
-        <Link className={`${classes.link} ${classes.signout}`} href="/">
+        <div
+          className={`${classes.link} ${classes.signout}`}
+          onClick={handleLogOut}
+        >
           <div className={classes.button}>
             <LogoutOutlined />
             <p>Sign out</p>
           </div>
-        </Link>
+        </div>
       </div>
 
       <div>{children}</div>

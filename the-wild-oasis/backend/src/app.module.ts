@@ -4,6 +4,10 @@ import { User } from './user/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { CabinModule } from './cabins/cabin.module';
+import { Cabin } from './cabins/cabins.entity';
+import { Reservation } from './reservations/reservation.entity';
+import { ReservationModule } from './reservations/reservation.module';
 
 //const test = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 //console.log(`${test}`);
@@ -26,7 +30,7 @@ import { UserModule } from './user/user.module';
           username: configService.get<string>('DB_OWNER_USERNAME'),
           password: configService.get<string>('DB_OWNER_PASSWORD'),
           database: configService.get<string>('DB_DATABASE'),
-          entities: [User],
+          entities: [User, Cabin, Reservation],
           synchronize: true,
           options: {
             encrypt: configService.get<string>('DB_ENCRYPT') === 'true',
@@ -39,6 +43,8 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     UserModule,
+    CabinModule,
+    ReservationModule,
   ],
 })
 export class AppModule {}

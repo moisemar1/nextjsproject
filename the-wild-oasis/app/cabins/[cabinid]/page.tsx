@@ -1,9 +1,8 @@
 type CabinPageProps = {
-  params: {
-    cabinid: string;
-  };
+  params: Promise<{ cabinid: string }>;
 };
 
 export default async function CabinPage({ params }: CabinPageProps) {
-  return <h1>{params.cabinid}</h1>;
+  const finishedParams = await params;
+  return <h1>{finishedParams.cabinid}</h1>;
 }

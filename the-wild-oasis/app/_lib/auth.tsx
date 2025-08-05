@@ -1,5 +1,5 @@
-import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth from "next-auth";
+/**import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { getServerSession } from "next-auth";
 import getUser from "./getUser";
 import Google from "next-auth/providers/google";
 export const authConfig = {
@@ -24,5 +24,8 @@ export const authConfig = {
   ],
   ///sessions
 };
+
 const handler = NextAuth(authConfig);
 export { handler as GET, handler as POST };
+export const auth = () => getServerSession(authConfig);
+*/

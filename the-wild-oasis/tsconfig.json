@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/_lib/insert-db.tsx"
+    "app/_lib/insert-db.tsx",
+    "app/auth/signup"
   ],
   "exclude": ["node_modules"]
 }

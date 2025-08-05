@@ -1,6 +1,9 @@
 import Link from "next/link";
 import classes from "./navigation.module.css";
-export default function Navigation() {
+import { auth } from "../_lib/auth";
+export default async function Navigation() {
+  //const session = await auth();
+  //console.log(session);
   return (
     <ul className={classes.navList}>
       <li>

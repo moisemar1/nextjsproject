@@ -98,3 +98,33 @@
   margin-right: 30px;
   font-size: 22px;
 }
+
+.PopupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: #141c24;
+  padding: 20px;
+  border-radius: 10px;
+  width: 600px;
+  height: 600px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.confirm {
+  margin-top: auto;
+  width: 580px;
+}

@@ -5,7 +5,7 @@ export const metadata = {
 export default function PageAccounts() {
   return (
     <div>
-      <h1>Page Accounts</h1>
+      <h1></h1>
     </div>
   );
 }

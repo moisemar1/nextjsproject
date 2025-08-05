@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import 'dotenv/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { instanceToPlain } from 'class-transformer';
+import { NotFoundError } from 'rxjs';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(
@@ -13,7 +14,21 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     private userRepository: Repository<User>,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: (req) => {
+        //console.log(req?.cookies?.jwt);
+        if (
+          !req ||
+          !req.cookies ||
+          !req.cookies.jwt ||
+          !req.cookies.jwt.ACCESS_TOKEN
+        )
+          return null;
+        try {
+          return req?.cookies?.jwt.ACCESS_TOKEN;
+        } catch (error) {
+          throw new NotFoundError('msg');
+        }
+      },
       //ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET!,
     });
